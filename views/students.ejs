@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/student.css">
     <title>List of Students | SMS</title>
 </head>
@@ -36,14 +37,14 @@
                         <td><%= rows.student_department %></td>
                         <td><%= rows.student_phone %></td>
                         <td><%= rows.student_email %></td>
-                        <td>
-                            <form action="/update-students/<%= rows.student_id %>" method="get">
-                                <button class="edit-btn"><i class="fa fa-pencil"></i>Edit</button>
-                            </form>
-                            <form action="/delete-students/<%= rows.student_id %>" method="get">
-                                <button class="delete-btn"><i class="fa fa-trash"></i>Delete</button>
-                            </form>
-                        </td>              
+                        <td style="text-align: left;">
+                          <form action="/update-students/<%= rows.student_id %>" method="get" style="display: inline;">
+                              <button class="edit-btn" style="margin-right: 10px;"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                          </form>
+                          <form action="/delete-students/<%= rows.student_id %>" method="get" style="display: inline;">
+                              <button class="delete-btn"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                          </form>
+                      </td>                                
                     </tr>
                 <% }); %>
             <% } %>

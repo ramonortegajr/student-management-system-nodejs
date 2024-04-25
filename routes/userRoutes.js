@@ -9,4 +9,6 @@ router.get('/students', userController.fetch);
 router.get('/update-students/:id', userController.edit);
 router.post('/update-students/:id', userController.update);
 router.get('/delete-students/:id', userController.delete);
+
+//exports the module to used globally
 module.exports = router;
