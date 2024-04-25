@@ -2,9 +2,14 @@ const { json } = require('express');
 const con = require('../database/connection');
 const { name } = require('ejs');
 
+exports.login = (req, res) => {
+    res.render('login');
+};
+
 exports.home = (req, res) => {
     res.render('home');
 };
+
 
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
