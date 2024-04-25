@@ -1,0 +1,43 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>SMS | Node JS</title>
+  <link href="../css/home.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="align">
+  <div class="grid">
+    <form method="POST" class="form login" action="/update-student">
+      <div class="form_field">
+        <label><i class="fa fa-user" aria-hidden="true"></i></label>
+        <input type="text" name="name" class="form_input" placeholder="Student Name" value="<%= student.name %>" required>
+      </div>
+      <div class="form_field">
+        <label><i class="fa fa-id-card" aria-hidden="true"></i></label>
+        <input type="text" name="batch" class="form_input" placeholder="Batch" value="<%= student.batch %>" required>
+      </div>
+      <div class="form_field">
+        <label><i class="fa fa-transgender-alt" aria-hidden="true"></i></label>
+        <input type="text" name="gender" class="form_input" placeholder="Gender" value="<%= student.gender %>" required>
+      </div>
+      <div class="form_field">
+        <label><i class="fa fa-users" aria-hidden="true"></i></label>
+        <input type="text" name="department" class="form_input" placeholder="Department" value="<%= student.department %>" required>
+      </div>
+      <div class="form_field">
+        <label><i class="fa fa-phone-square" aria-hidden="true"></i></label>
+        <input type="text" name="phone" class="form_input" placeholder="Phone" value="<%= student.phone %>" required>
+      </div>
+      <div class="form_field">
+        <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
+        <input type="text" name="email" class="form_input" placeholder="Email" value="<%= student.email %>" required>
+      </div>
+      <!-- You might need to include the student ID as a hidden input field for updating -->
+      <input type="hidden" name="studentId" value="<%= student.id %>">
+      <div class="form_field">
+        <button class="submitButton" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
