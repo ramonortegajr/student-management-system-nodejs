@@ -4,8 +4,9 @@ const userController = require('../controllers/userController');
 
 //routes
 router.get('/', userController.home);
-router.post('/add-student', userController.create);
+router.post('/add-students', userController.create);
 router.get('/students', userController.fetch);
-router.get('/edit-students/:id', userController.edit);
-
+router.get('/update-students/:id', userController.edit);
+router.post('/update-students/:id', userController.update);
+router.get('/delete-students/:id', userController.delete);
 module.exports = router;

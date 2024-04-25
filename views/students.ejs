@@ -22,24 +22,39 @@
           </tr>
         </thead>
         <tbody>
-            <% students.forEach(function(rows) { %>
-          <tr>
-            <td><%= rows.student_id %></td>
-            <td><%= rows.student_name %></td>
-            <td><%= rows.student_batch %></td>
-            <td><%= rows.student_gender %></td>
-            <td><%= rows.student_department %></td>
-            <td><%= rows.student_phone %></td>
-            <td><%= rows.student_email %></td>
-            <td>
-              <form action="/edit-students" method="get">
-                <button class="edit-btn"><i class="fa fa-pencil"></i>Edit</button>
-              </form>
-              <button class="delete-btn"><i class="fa fa-trash"></i>Delete</button>
-            </td>              
-          </tr>
-        <% }); %>
+            <% if (students.length === 0) { %>
+                <tr>
+                    <td colspan="8">No data found</td>
+                </tr>
+            <% } else { %>
+                <% students.forEach(function(rows) { %>
+                    <tr>
+                        <td><%= rows.student_id %></td>
+                        <td><%= rows.student_name %></td>
+                        <td><%= rows.student_batch %></td>
+                        <td><%= rows.student_gender %></td>
+                        <td><%= rows.student_department %></td>
+                        <td><%= rows.student_phone %></td>
+                        <td><%= rows.student_email %></td>
+                        <td>
+                            <form action="/update-students/<%= rows.student_id %>" method="get">
+                                <button class="edit-btn"><i class="fa fa-pencil"></i>Edit</button>
+                            </form>
+                            <form action="/delete-students/<%= rows.student_id %>" method="get">
+                                <button class="delete-btn"><i class="fa fa-trash"></i>Delete</button>
+                            </form>
+                        </td>              
+                    </tr>
+                <% }); %>
+            <% } %>
         </tbody>
       </table>
+      <div class="pagination">
+        <!-- Pagination controls here -->
+        <!-- Example: Previous | 1 | 2 | 3 | Next -->
+    </div>
+    <div class="total-count">
+        Total records: <%= students.length %>
+    </div>
 </body>
 </html>
