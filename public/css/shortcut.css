@@ -1,0 +1,38 @@
+body { 
+    padding-top:20px; 
+    background: linear-gradient(to right, #ffffff, #abbaab); 
+}
+.panel-body .btn:not(.btn-block) {
+     width:120px;margin-bottom:10px; 
+}
+.panel-heading {
+    background-color: #363B41;
+}
+.center-panel {
+    margin: 0 auto;
+    float: none;
+}
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+/* Style for user log section */
+.user-log {
+    background-color: #428BCA;
+    border: 1px solid #ccc;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 1px;
+}
+.user-log h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+.user-log p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}

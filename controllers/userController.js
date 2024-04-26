@@ -14,6 +14,10 @@ exports.home = (req, res) => {
     res.render('home');
 }
 
+exports.shortcut = (req, res) => {
+    res.render('shortcut');
+}
+
 
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
@@ -95,7 +99,7 @@ exports.signin  = (req, res) => {
             return res.redirect('/login?error=1');
         }
         if (results.length > 0) {
-            res.redirect('/students');
+            res.redirect('/shortcut');
         } else {
             res.redirect('/401');
         }

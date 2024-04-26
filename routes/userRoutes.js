@@ -4,6 +4,7 @@ const userController = require('../controllers/userController');
 
 //routes
 router.get('/', userController.login);
+router.get('/shortcut', userController.shortcut);
 router.get('/home', userController.home);
 router.post('/add-students', userController.create);
 router.get('/students', userController.fetch);
