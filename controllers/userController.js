@@ -18,7 +18,9 @@ exports.signup = (req, res) => {
 exports.shortcut = (req, res) => {
     res.render('shortcut', { session: req.session});
 };
-
+exports.dashboard = (req, res) => {
+    res.render('dashboard');
+}
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
         con.query(sql, data, (err, rows) => {

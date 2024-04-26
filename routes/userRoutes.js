@@ -9,6 +9,7 @@ router.get('/shortcut', userController.shortcut);
 router.get('/home', userController.home);
 router.get('/delete-students/:id', userController.delete);
 router.get('/students', userController.fetch);
+router.get('/dashboard', userController.dashboard);
 router.get('/update-students/:id', userController.edit);
 router.post('/add-students', userController.create);
 router.post('/update-students/:id', userController.update);

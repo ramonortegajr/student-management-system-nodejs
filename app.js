@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 
-// Configure session middleware
+// CONFIGURE SESSION
 app.use(session({
     secret: 'your_secret_key',
     resave: false,
