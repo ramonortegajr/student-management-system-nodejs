@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 const routes = require('./routes/userRoutes');
 app.use('/', routes);
-app.listen(port, () => console.log(`Listening on port: ${port}`))
+app.listen(port, () => console.log(`Listening on port: ${port}`));

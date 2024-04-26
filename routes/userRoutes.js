@@ -10,6 +10,10 @@ router.get('/students', userController.fetch);
 router.get('/update-students/:id', userController.edit);
 router.post('/update-students/:id', userController.update);
 router.get('/delete-students/:id', userController.delete);
+router.post('/signin', userController.signin);
+
+//routes error
+router.get('/401', userController.error_page_401);
 
 //exports the module to used globally
 module.exports = router;

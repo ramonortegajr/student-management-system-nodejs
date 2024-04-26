@@ -4,11 +4,15 @@ const { name } = require('ejs');
 
 exports.login = (req, res) => {
     res.render('login');
-};
+}
+
+exports.error_page_401 = (req, res) => {
+    res.render('401');
+}
 
 exports.home = (req, res) => {
     res.render('home');
-};
+}
 
 
 const queryPromise = (sql, data) => {
@@ -18,7 +22,7 @@ const queryPromise = (sql, data) => {
             else resolve(rows);
         });
     });
-};
+}
 
 //[CRUD] - CREATE
 exports.create = async (req, res) => {
@@ -31,7 +35,7 @@ exports.create = async (req, res) => {
         console.error(err);
         res.status(500).send('Internal Server Error');
     }
-};
+}
 
 //[CRUD] - READ
 exports.fetch = async (req, res) => {
@@ -42,7 +46,7 @@ exports.fetch = async (req, res) => {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}
 
 //[CRUD] - UPDATE/EDIT
 exports.edit = async (req, res) => {
@@ -53,7 +57,7 @@ exports.edit = async (req, res) => {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}
 
 //[CRUD] - UPDATE/EDIT
 exports.update = async (req, res) => {
@@ -66,7 +70,7 @@ exports.update = async (req, res) => {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}
 
 //[CRUD] - DELETE
 exports.delete = (req, res) => {
@@ -79,4 +83,25 @@ exports.delete = (req, res) => {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}
+
+//[LOGIN] - LOGIN TO THE SYSTEM
+exports.signin  = (req, res) => {
+    const { account_username, account_password } = req.body;
+    try {
+        con.query('SELECT * FROM tb_account WHERE account_username = ? AND account_password = ?', [account_username, account_password], (err, results) => {
+        if (err) {
+            console.error("Error executing the MYSQL query: ", err);
+            return res.redirect('/login?error=1');
+        }
+        if (results.length > 0) {
+            res.redirect('/students');
+        } else {
+            res.redirect('/401');
+        }
+        });
+    } catch (error) {
+        console.error("Internal error on server", error);
+        res.send("Internal Server error", error);
+    }
+}
