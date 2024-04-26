@@ -17,9 +17,9 @@ exports.signup = (req, res) => {
 }
 exports.shortcut = (req, res) => {
     res.render('shortcut', { session: req.session});
-};
+}
 exports.dashboard = (req, res) => {
-    res.render('dashboard');
+    res.render('dashboard', { session: req.session});
 }
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
@@ -106,7 +106,7 @@ exports.signin  = (req, res) => {
             req.session.account_name = account_name;
             req.session.account_username = account_username;
             req.session.id = id;
-            res.redirect('/shortcut');
+            res.redirect('/dashboard');
         } else {
             res.redirect('/error');
         }
