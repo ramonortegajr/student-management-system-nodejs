@@ -1,15 +1,19 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>SMS | Login</title>
+  <title>SMS | Signup</title>
   <link href="../css/login.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="align">
   <div class="grid">
 
-    <h3>&nbsp;&nbsp;&nbsp;&nbsp;Student Management System | Login</h3>
-    <form  method="POST" class="form login" action="/signin">
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;Student Management System | Signup</h3>
+    <form  method="POST" class="form login" action="/register">
+        <div class="form_field">
+            <label><i class="fa fa-user" aria-hidden="true"></i></label>
+            <input type="text" name="account_name" class="form_input" placeholder="Fullname" required>
+          </div>
       <div class="form_field">
         <label><i class="fa fa-user" aria-hidden="true"></i></label>
         <input type="text" name="account_username" class="form_input" placeholder="Username" required>
@@ -19,10 +23,10 @@
         <input type="password" name="account_password" class="form_input" placeholder="Password" required>
       </div>
       <div class="form_field">
-        <button class="submitButton" type="submit">Login</button>
+        <button class="submitButton" type="submit">Register</button>
       </div>
       <div class="lb-signup">
-        <a href="/signup">Dont have account?</a>
+        <a href="/">Already have account?</a>
       </div>
       <div class="footer">
         Student Management System | Copyright © 2024

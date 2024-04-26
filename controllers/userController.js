@@ -2,22 +2,22 @@ const { json } = require('express');
 const con = require('../database/connection');
 const { name } = require('ejs');
 
+
 exports.login = (req, res) => {
     res.render('login');
 }
-
 exports.error_page_401 = (req, res) => {
-    res.render('401');
+    res.render('./error/401');
 }
-
 exports.home = (req, res) => {
     res.render('home');
 }
-
-exports.shortcut = (req, res) => {
-    res.render('shortcut');
+exports.signup = (req, res) => {
+    res.render('signup');
 }
-
+exports.shortcut = (req, res) => {
+    res.render('shortcut', { session: req.session});
+};
 
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
@@ -99,13 +99,31 @@ exports.signin  = (req, res) => {
             return res.redirect('/login?error=1');
         }
         if (results.length > 0) {
+            const { account_name, account_username, id} = results[0];
+            //STORING DATA IN SESSION
+            req.session.account_name = account_name;
+            req.session.account_username = account_username;
+            req.session.id = id;
             res.redirect('/shortcut');
         } else {
-            res.redirect('/401');
+            res.redirect('/error');
         }
         });
     } catch (error) {
         console.error("Internal error on server", error);
         res.send("Internal Server error", error);
+    }
+}
+
+//[CRUD] - SIGNUP 
+exports.register = async (req, res) => {
+    const { account_name, account_username, account_password} = req.body;
+    const registerData = [account_name, account_username, account_password];
+    try {
+        await queryPromise('INSERT INTO tb_account SET account_name = ?, account_username = ?, account_password = ?', registerData);
+        res.redirect('/');
+    } catch (error) {
+        console.error("Internal error on server", error);
+        res.redirect('/error');
     }
 }
