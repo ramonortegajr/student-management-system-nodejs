@@ -2,7 +2,6 @@ const { json } = require('express');
 const con = require('../database/connection');
 const { name } = require('ejs');
 
-
 exports.login = (req, res) => {
     res.render('login');
 }
@@ -21,6 +20,10 @@ exports.shortcut = (req, res) => {
 exports.dashboard = (req, res) => {
     res.render('dashboard', { session: req.session});
 }
+exports.registration = (req, res) => {
+    res.render('registration', { session: req.session});
+}
+
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
         con.query(sql, data, (err, rows) => {

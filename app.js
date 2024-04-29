@@ -16,7 +16,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-const port = process.env.PORT || 3004;
+const port = process.env.PORT || 3006;
 const routes = require('./routes/userRoutes');
 app.use('/', routes);
 app.listen(port, () => console.log(`Listening on port: ${port}`));

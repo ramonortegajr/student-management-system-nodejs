@@ -11,6 +11,7 @@ router.get('/delete-students/:id', userController.delete);
 router.get('/students', userController.fetch);
 router.get('/dashboard', userController.dashboard);
 router.get('/update-students/:id', userController.edit);
+router.get('/registration', userController.registration);
 router.post('/add-students', userController.create);
 router.post('/update-students/:id', userController.update);
 router.post('/signin', userController.signin);
