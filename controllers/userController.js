@@ -132,3 +132,16 @@ exports.register = async (req, res) => {
         res.redirect('/error');
     }
 }
+
+//[CRUD] - REGISTRATION OF STUDENT
+exports.registration_student = async (req, res) => {
+    const {firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest} = req.body;
+    const registrationData = [firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest];
+    try {
+        await queryPromise('INSERT INTO tb_student SET student_firstname = ?, student_middlename = ?, student_lastname = ?, student_birth = ?, student_gender = ?, student_nationality = ?, student_phone = ?, student_email = ?, student_address = ?, student_guardian = ?, student_guardian_contact = ?, student_guardian_relation = ?, student_previous_school = ?, student_year_graduate = ?, student_academics = ?, student_interest = ?', registrationData);
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error("Internal error on server", error);
+        res.redirect('/error');
+    }
+}

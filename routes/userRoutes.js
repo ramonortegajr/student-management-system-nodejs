@@ -13,6 +13,7 @@ router.get('/dashboard', userController.dashboard);
 router.get('/update-students/:id', userController.edit);
 router.get('/registration', userController.registration);
 router.post('/add-students', userController.create);
+router.post('/register_student', userController.registration_student);
 router.post('/update-students/:id', userController.update);
 router.post('/signin', userController.signin);
 router.post('/register', userController.register);

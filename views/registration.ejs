@@ -71,7 +71,7 @@
             </div>
         </header>
         <main>
-            <form action="" method="post">
+            <form action="/register_student" method="post">              
             <div class="card" style="margin-top: -1em;">
                 <div class="card-body">
                     <div class="row gutters">
@@ -106,34 +106,34 @@
                             <div class="form-group">
                                 <label for="gender">Gender</label>
                                 <select class="form-control" id="gender" name="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="nationality">Nationality</label>
-                                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter nationality">
+                                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter nationality" required>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email ID">
+                                <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email ID" required>
                             </div>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter address">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" required>
                             </div>
                         </div>
                     </div> 
@@ -145,19 +145,19 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="guardianName">Name</label>
-                                <input type="text" class="form-control" id="guardianName"  name="guardianName"placeholder="Enter guardian's name">
+                                <input type="text" class="form-control" id="guardianName"  name="guardianName"placeholder="Enter guardian's name" required>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="guardianContact">Contact Information</label>
-                                <input type="text" class="form-control" id="guardiancontact" name="guardianContact" placeholder="Enter guardian's contact">
+                                <input type="text" class="form-control" id="guardianContact" name="guardianContact" placeholder="Enter guardian's contact" required>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="relationship">Relationship to Student</label>
-                                <input type="text" class="form-control" id="relationship"  name="relationship" placeholder="Enter relationship">
+                                <input type="text" class="form-control" id="relationship"  name="relationship" placeholder="Enter relationship" required>
                             </div>
                         </div>
                     </div>
@@ -169,25 +169,25 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="previousSchool">Previous School/Institution</label>
-                                <input type="text" class="form-control" id="previousSchool" name="previousSchool" placeholder="Enter previous school or institution">
+                                <input type="text" class="form-control" id="previousSchool" name="previousSchool" placeholder="Enter previous school or institution" required>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="yearGraduation">Year of Graduation</label>
-                                <input type="text" class="form-control" id="yearGraduation" name="yearGraduation" placeholder="Enter year of graduation">
+                                <input type="text" class="form-control" id="yearGraduation" name="yearGraduation" placeholder="Enter year of graduation" required>
                             </div>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label for="academicAchievements">Academic Achievements (if any)</label>
-                                <textarea class="form-control" id="academicAchievements" name="academicAchievements" rows="3" placeholder="Enter academic achievements"></textarea>
+                                <textarea class="form-control" id="academicAchievements" name="academicAchievements" rows="3" placeholder="Enter academic achievements" required></textarea>
                             </div>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label for="subjectsInterest">Subjects of Interest</label>
-                                <input type="text" class="form-control" id="subjectsInterest" name="subjectsInterest" placeholder="Enter subjects of interest">
+                                <input type="text" class="form-control" id="subjectsInterest" name="subjectsInterest" placeholder="Enter subjects of interest" required>
                             </div>
                         </div>
                     </div>
@@ -195,14 +195,14 @@
                     <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="text-right">
-                                <button type="button" id="submit" name="cancel" class="btn btn-secondary">Clear</button>
-                                <button type="button" id="submit" name="submit" class="btn btn-primary">Register</button>
+                                <button type="submit" id="submit" name="cancel" class="btn btn-secondary">Clear</button>
+                                <button type="submit" id="submit" name="submit" class="btn btn-primary">Register</button>
                             </div>
                         </div>
                     </div>
-                   </form>
                 </div>
-            </div>                                           
+            </div>   
+            </form>
         </main>
     </div>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
