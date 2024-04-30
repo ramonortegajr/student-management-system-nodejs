@@ -2,6 +2,7 @@ const { json } = require('express');
 const con = require('../database/connection');
 const { name } = require('ejs');
 
+//[ROUTING PAGES]
 exports.login = (req, res) => {
     res.render('login');
 }
@@ -24,6 +25,7 @@ exports.registration = (req, res) => {
     res.render('registration', { session: req.session});
 }
 
+//[DECLARE THE PROMISE ASYNCH AWAIT]
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
         con.query(sql, data, (err, rows) => {
@@ -33,7 +35,7 @@ const queryPromise = (sql, data) => {
     });
 }
 
-//[CRUD] - CREATE
+//[CRUD] - [CREATE]
 exports.create = async (req, res) => {
     const { name, batch, gender, department, phone, email } = req.body;
     const insertData = [name, batch, gender, department, phone, email];
@@ -46,7 +48,7 @@ exports.create = async (req, res) => {
     }
 }
 
-//[CRUD] - READ
+//[CRUD] - [READ]
 exports.fetch = async (req, res) => {
     try {
         const rows = await queryPromise('SELECT * FROM tb_student');
@@ -57,7 +59,19 @@ exports.fetch = async (req, res) => {
     }
 }
 
-//[CRUD] - UPDATE/EDIT
+//[CRUD] - [COUNT DATA]
+exports.count_students = async (req, res) => {
+    try {
+        const rows = await queryPromise('SELECT * FROM tb_student');
+        const totalCount = rows.length;
+        res.render('dashboard', { totalCount: totalCount });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+//[CRUD] - [UPDATE/EDIT]
 exports.edit = async (req, res) => {
     try {
         const [student] = await queryPromise('SELECT * FROM tb_student WHERE student_id = ?', [req.params.id]);
@@ -68,7 +82,7 @@ exports.edit = async (req, res) => {
     }
 }
 
-//[CRUD] - UPDATE/EDIT
+//[CRUD] - [UPDATE/EDIT]
 exports.update = async (req, res) => {
     const { name, batch, gender, department, phone, email } = req.body;
     const updateData = [name, batch, gender, department, phone, email, req.params.id];
@@ -81,7 +95,7 @@ exports.update = async (req, res) => {
     }
 }
 
-//[CRUD] - DELETE
+//[CRUD] - [DELETE]
 exports.delete = (req, res) => {
     try {
         con.query('DELETE FROM tb_student WHERE student_id = ?', [req.params.id], (err, results) => {
@@ -94,7 +108,7 @@ exports.delete = (req, res) => {
     }
 }
 
-//[LOGIN] - LOGIN TO THE SYSTEM
+//[LOGIN] - [LOGIN TO THE SYSTEM]
 exports.signin  = (req, res) => {
     const { account_username, account_password } = req.body;
     try {
@@ -105,7 +119,7 @@ exports.signin  = (req, res) => {
         }
         if (results.length > 0) {
             const { account_name, account_username, id} = results[0];
-            //STORING DATA IN SESSION
+            //[STORING DATA IN SESSION]
             req.session.account_name = account_name;
             req.session.account_username = account_username;
             req.session.id = id;
@@ -120,7 +134,7 @@ exports.signin  = (req, res) => {
     }
 }
 
-//[CRUD] - SIGNUP 
+//[CRUD] - [SIGNUP] 
 exports.register = async (req, res) => {
     const { account_name, account_username, account_password} = req.body;
     const registerData = [account_name, account_username, account_password];
@@ -133,7 +147,7 @@ exports.register = async (req, res) => {
     }
 }
 
-//[CRUD] - REGISTRATION OF STUDENT
+//[CRUD] - [REGISTRATION OF STUDENT]
 exports.registration_student = async (req, res) => {
     const {firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest} = req.body;
     const registrationData = [firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest];

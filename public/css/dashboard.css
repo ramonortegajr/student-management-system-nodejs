@@ -407,12 +407,14 @@ tr td:last-child {
     #nav-toggle:checked+.sidebar:hover {
         width: 345px;
         z-index: 200;
-        
+        text-decoration: none; 
+    
     }
     #nav-goggle:checked+.sidebar .sidebar-brand,
     #nav-toggle:checked+.sidebar:hover li {
         padding-left: 2rem;
         text-align: left;
+        text-decoration: none; 
     }
     #nav-goggle:checked+.sidebar li a {
         padding-left: 1rem;
@@ -493,6 +495,7 @@ tr td:last-child {
   
   .registration-form button:hover {
     background-color: #45a049;
+    text-decoration: none; 
   }
   
 .card {

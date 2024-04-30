@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-
 // CONFIGURE SESSION
 app.use(session({
     secret: 'your_secret_key',
@@ -16,7 +15,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-const port = process.env.PORT || 3006;
+const port = process.env.PORT || 3007;
 const routes = require('./routes/userRoutes');
 app.use('/', routes);
 app.listen(port, () => console.log(`Listening on port: ${port}`));
