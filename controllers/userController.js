@@ -50,7 +50,7 @@ exports.create = async (req, res) => {
 exports.fetch = async (req, res) => {
     try {
         const rows = await queryPromise('SELECT * FROM tb_student');
-        res.render('students', { students: rows });
+        res.render('students', { students: rows, session: req.session });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
