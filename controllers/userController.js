@@ -16,13 +16,11 @@ exports.signup = (req, res) => {
     res.render('signup');
 }
 exports.shortcut = (req, res) => {
-    res.render('shortcut', { session: req.session});
+    res.render('shortcut', { session: req.session });
 }
-exports.dashboard = (req, res) => {
-    res.render('dashboard', { session: req.session});
-}
+
 exports.registration = (req, res) => {
-    res.render('registration', { session: req.session});
+    res.render('registration', { session: req.session });
 }
 
 //[DECLARE THE PROMISE ASYNCH AWAIT]
@@ -41,7 +39,7 @@ exports.create = async (req, res) => {
     const insertData = [name, batch, gender, department, phone, email];
     try {
         await queryPromise('INSERT INTO tb_student SET student_name = ?, student_batch = ?, student_gender = ?, student_department = ?, student_phone = ?, student_email = ?', insertData);
-        res.render('home');
+        res.render('home', { successMessage: 'Data inserted successfully!' });
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -59,12 +57,11 @@ exports.fetch = async (req, res) => {
     }
 }
 
-//[CRUD] - [COUNT DATA]
-exports.count_students = async (req, res) => {
+//CRUD - [COUNT TOTAL STUDENTS]
+exports.fetch_students = async (req, res) => {
     try {
         const rows = await queryPromise('SELECT * FROM tb_student');
-        const totalCount = rows.length;
-        res.render('dashboard', { totalCount: totalCount });
+        res.render('dashboard', { totalCount: rows, session: req.session });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
@@ -153,9 +150,10 @@ exports.registration_student = async (req, res) => {
     const registrationData = [firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest];
     try {
         await queryPromise('INSERT INTO tb_student SET student_firstname = ?, student_middlename = ?, student_lastname = ?, student_birth = ?, student_gender = ?, student_nationality = ?, student_phone = ?, student_email = ?, student_address = ?, student_guardian = ?, student_guardian_contact = ?, student_guardian_relation = ?, student_previous_school = ?, student_year_graduate = ?, student_academics = ?, student_interest = ?', registrationData);
-        res.redirect('/dashboard');
+        res.render('registration', { successMessage: 'Student inserted successfully!', session: req.session });
     } catch (error) {
         console.error("Internal error on server", error);
         res.redirect('/error');
     }
 }
+
