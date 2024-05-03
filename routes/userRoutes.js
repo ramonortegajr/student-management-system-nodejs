@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-//[ROUTE PAGES]
+//[END POINTS]
 router.get('/', userController.login);
 router.get('/signup', userController.signup);
 router.get('/shortcut', userController.shortcut);
@@ -17,7 +17,7 @@ router.post('/register_student', userController.registration_student);
 router.post('/update-students/:id', userController.update);
 router.post('/signin', userController.signin);
 router.post('/register', userController.register);
-//[ROUTE ERROR PAGE]
+//[END POINTS ERROR PAGE]
 router.get('/error', userController.error_page_401);
 //[EXPORT MODULE TO USED GLOBALLY]
 module.exports = router;

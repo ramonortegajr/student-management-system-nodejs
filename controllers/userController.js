@@ -93,12 +93,10 @@ exports.update = async (req, res) => {
 }
 
 //[CRUD] - [DELETE]
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     try {
-        con.query('DELETE FROM tb_student WHERE student_id = ?', [req.params.id], (err, results) => {
-            if (err) console.log('Internal Error');
-            else res.redirect('/students');
-        });
+        await queryPromise('DELETE FROM tb_student WHERE student_id = ?', [req.params.id]);
+        res.redirect('/students');
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
@@ -156,4 +154,3 @@ exports.registration_student = async (req, res) => {
         res.redirect('/error');
     }
 }
-
