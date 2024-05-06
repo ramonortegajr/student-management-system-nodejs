@@ -119,20 +119,26 @@
               </tbody>
             </table>
         </div>
+         <!-- Show number of entries -->
+        <div class="show-entries">
+            <span>Show <%= (currentPage - 1) * limit + 1 %> - <%= Math.min(currentPage * limit, totalStudents) %> of <%= totalStudents %> entries</span>
+        </div>
+
         <!-- Pagination links -->
         <div class="pagination">
-            <ul>
-                <% if (currentPage > 1) { %>
-                <li><a href="/students?page=<%= currentPage - 1 %>">Prev</a></li>
-                <% } %>
-                <% for (let i = 1; i <= totalPages; i++) { %>
-                <li <% if (i === currentPage) { %>class="active"<% } %>><a href="/students?page=<%= i %>"><%= i %></a></li>
-                <% } %>
-                <% if (currentPage < totalPages) { %>
-                <li><a href="/students?page=<%= currentPage + 1 %>">Next</a></li>
-                <% } %>
-            </ul>
+        <ul>
+        <% if (currentPage > 1) { %>
+            <li><a href="/students?page=<%= currentPage - 1 %>">Prev</a></li>
+        <% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <li <% if (i === currentPage) { %>class="active"<% } %>><a href="/students?page=<%= i %>"><%= i %></a></li>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
+            <li><a href="/students?page=<%= currentPage + 1 %>">Next</a></li>
+        <% } %>
+        </ul>
         </div>
+
         <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

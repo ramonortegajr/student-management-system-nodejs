@@ -58,7 +58,7 @@ exports.fetch = async (req, res) => {
         const totalStudents = await queryPromise('SELECT COUNT(*) AS total FROM tb_student');
         const totalPages = Math.ceil(totalStudents[0].total / limit);
 
-        res.render('students', { students: rows, session: req.session, truncateEmail: truncateEmail, currentPage: page, totalPages: totalPages });
+        res.render('students', { students: rows, session: req.session, truncateEmail: truncateEmail, currentPage: page, totalPages: totalPages,limit: limit, totalStudents: totalStudents[0].total });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
