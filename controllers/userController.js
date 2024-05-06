@@ -1,6 +1,8 @@
 const { json } = require('express');
 const con = require('../database/connection');
 const { name } = require('ejs');
+const { truncateEmail } = require('../public/js/students');
+
 
 //[ROUTING PAGES]
 exports.login = (req, res) => {
@@ -49,8 +51,14 @@ exports.create = async (req, res) => {
 //[CRUD] - [READ]
 exports.fetch = async (req, res) => {
     try {
-        const rows = await queryPromise('SELECT * FROM tb_student');
-        res.render('students', { students: rows, session: req.session });
+        const page = parseInt(req.query.page) || 1;
+        const limit = 5; 
+        const offset = (page - 1) * limit;
+        const rows = await queryPromise(`SELECT * FROM tb_student LIMIT ${limit} OFFSET ${offset}`);
+        const totalStudents = await queryPromise('SELECT COUNT(*) AS total FROM tb_student');
+        const totalPages = Math.ceil(totalStudents[0].total / limit);
+
+        res.render('students', { students: rows, session: req.session, truncateEmail: truncateEmail, currentPage: page, totalPages: totalPages });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');

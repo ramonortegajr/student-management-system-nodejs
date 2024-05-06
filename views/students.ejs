@@ -10,6 +10,7 @@
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="../public/js/students.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
@@ -91,32 +92,45 @@
                   <th>Mobile</th>
                   <th>Email</th>
                   <th>Nationality</th>
-                  <th></th>
                   <th style="width: 36px;">Action</th>
                 </tr>
               </thead>
+              
               <tbody>
+                <% students.forEach(function(student) { %>
                 <tr>
-                  <!-- <td>1</td>
-                  <td>Mark</td>
-                  <td>Tompson</td>
-                  <td>the_mark7</td>
+                 <td><%= student.student_id %></td>
+                  <td><%= student.student_firstname %> <%= student.student_lastname %></td>
+                  <td><%= student.student_address %></td>
+                  <td><%= student.student_birth%></td>
+                  <td><%= student.student_gender %></td>
+                  <td><%= student.student_phone %></td>
+                  <td data-toggle="tooltip" title="<%=student.student_email%>"><%= truncateEmail(student.student_email) %></td>
+                  <td><%= student.student_nationality %></td>
                   <td>
-                      <a href=""><i class="icon-pencil"></i></a>
-                      <a href="" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                  </td> -->
+                    <a href="#" data-toggle="tooltip" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    &nbsp;
+                    <a href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
+                    &nbsp;
+                    <a href="#" role="button" data-toggle="modal" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                  </td>
                 </tr>
+                <% }); %>
               </tbody>
             </table>
         </div>
+        <!-- Pagination links -->
         <div class="pagination">
             <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">Next</a></li>
+                <% if (currentPage > 1) { %>
+                <li><a href="/students?page=<%= currentPage - 1 %>">Prev</a></li>
+                <% } %>
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                <li <% if (i === currentPage) { %>class="active"<% } %>><a href="/students?page=<%= i %>"><%= i %></a></li>
+                <% } %>
+                <% if (currentPage < totalPages) { %>
+                <li><a href="/students?page=<%= currentPage + 1 %>">Next</a></li>
+                <% } %>
             </ul>
         </div>
         <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
