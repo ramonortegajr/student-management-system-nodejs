@@ -117,8 +117,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Recently Enrolled</h3>
-
-                            <button>See all <span class="las la-arrow-right">
+                            <a href="/students" style="color: white;"><button>See all <span class="las la-arrow-right"></a>
                             </span></button>
                         </div>
 
@@ -127,14 +126,23 @@
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>Name</td>
-                                            <td>Course</td>
+                                            <td>ID</td>
+                                            <td>Student Name</td>
+                                            <td>Contact</td>
                                             <td>Address</td>
-                                            <td>Year</td>
+                                            <td>Date Added</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <% students.forEach(function(student) { %>
+                                        <tr>
+                                            <td><%= student.student_id %></td>
+                                            <td><%= student.student_firstname %> <%= student.student_lastname %></td>
+                                            <td><%= student.student_phone %></td>
+                                            <td><%= student.student_address %></td>
+                                            <td><%= student.student_added_date%></td>
+                                        </tr>
+                                        <% }); %>
                                     </tbody>
                                 </table>
                             </div>

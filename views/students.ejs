@@ -84,8 +84,8 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Student ID</th>
-                  <th>Student Name</th>
+                  <th>ID</th>
+                  <th>Student</th>
                   <th>Address</th>
                   <th>Birthdate</th>
                   <th>Gender</th>
@@ -120,10 +120,14 @@
             </table>
         </div>
          <!-- Show number of entries -->
-        <div class="show-entries">
-            <span>Show <%= (currentPage - 1) * limit + 1 %> - <%= Math.min(currentPage * limit, totalStudents) %> of <%= totalStudents %> entries</span>
+         <div class="show-entries">
+            <% if (totalStudents === 0) { %>
+                <span>Show 0-0 showing</span>
+            <% } else { %>
+                <span>Show <%= (currentPage - 1) * limit + 1 %> - <%= Math.min(currentPage * limit, totalStudents) %> of <%= totalStudents %> entries</span>
+            <% } %>
         </div>
-
+    
         <!-- Pagination links -->
         <div class="pagination">
         <ul>

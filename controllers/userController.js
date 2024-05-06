@@ -67,9 +67,10 @@ exports.fetch = async (req, res) => {
 
 //CRUD - [COUNT TOTAL STUDENTS]
 exports.fetch_students = async (req, res) => {
+    const rows = await queryPromise(`SELECT * FROM tb_student ORDER BY student_added_date DESC LIMIT 4 `);
     try {
         const rows = await queryPromise('SELECT * FROM tb_student');
-        res.render('dashboard', { totalCount: rows, session: req.session });
+        res.render('dashboard', { totalCount: rows, session: req.session, students: rows});
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
@@ -153,9 +154,10 @@ exports.register = async (req, res) => {
 //[CRUD] - [REGISTRATION OF STUDENT]
 exports.registration_student = async (req, res) => {
     const {firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest} = req.body;
-    const registrationData = [firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest];
+    const dateTime = Date();
+    const registrationData = [firstName, middleName, lastName, dob, gender, nationality, phone, email, address, guardianName, guardianContact, relationship, previousSchool, yearGraduation, academicAchievements, subjectsInterest, dateTime];
     try {
-        await queryPromise('INSERT INTO tb_student SET student_firstname = ?, student_middlename = ?, student_lastname = ?, student_birth = ?, student_gender = ?, student_nationality = ?, student_phone = ?, student_email = ?, student_address = ?, student_guardian = ?, student_guardian_contact = ?, student_guardian_relation = ?, student_previous_school = ?, student_year_graduate = ?, student_academics = ?, student_interest = ?', registrationData);
+        await queryPromise('INSERT INTO tb_student SET student_firstname = ?, student_middlename = ?, student_lastname = ?, student_birth = ?, student_gender = ?, student_nationality = ?, student_phone = ?, student_email = ?, student_address = ?, student_guardian = ?, student_guardian_contact = ?, student_guardian_relation = ?, student_previous_school = ?, student_year_graduate = ?, student_academics = ?, student_interest = ?, student_added_date = ?', registrationData);
         res.render('registration', { successMessage: 'Student inserted successfully!', session: req.session });
     } catch (error) {
         console.error("Internal error on server", error);
