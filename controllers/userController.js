@@ -4,7 +4,7 @@ const { name } = require('ejs');
 const { truncateEmail } = require('../public/js/students');
 
 
-//[ROUTING PAGES]
+//[ROUTING PAGES] - ADMIN
 exports.login = (req, res) => {
     res.render('login');
 }
@@ -23,6 +23,11 @@ exports.shortcut = (req, res) => {
 
 exports.registration = (req, res) => {
     res.render('registration', { session: req.session });
+}
+
+//[ROUTING PAGES] - USER
+exports.user_login = (req, res) => {
+    res.render('user_login');
 }
 
 //[DECLARE THE PROMISE ASYNCH AWAIT]
@@ -67,9 +72,8 @@ exports.fetch = async (req, res) => {
 
 //CRUD - [COUNT TOTAL STUDENTS]
 exports.fetch_students = async (req, res) => {
-    const rows = await queryPromise(`SELECT * FROM tb_student ORDER BY student_added_date DESC LIMIT 4 `);
     try {
-        const rows = await queryPromise('SELECT * FROM tb_student');
+        const rows = await queryPromise(`SELECT * FROM tb_student ORDER BY student_added_date DESC LIMIT 3 `);
         res.render('dashboard', { totalCount: rows, session: req.session, students: rows});
     } catch (error) {
         console.error('Error fetching data:', error);
