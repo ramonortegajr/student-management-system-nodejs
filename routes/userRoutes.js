@@ -20,6 +20,7 @@ router.post('/register', userController.register);
 
 //[END POINTS] - USER
 router.get('/login-user', userController.user_login);
+router.get('/signup-user', userController.user_signup);
 
 //[END POINTS ERROR PAGE]
 router.get('/error', userController.error_page_401);

@@ -30,6 +30,10 @@ exports.user_login = (req, res) => {
     res.render('user_login');
 }
 
+exports.user_signup = (req, res) => {
+    res.render('user_signup');
+}
+
 //[DECLARE THE PROMISE ASYNCH AWAIT]
 const queryPromise = (sql, data) => {
     return new Promise((resolve, reject) => {
